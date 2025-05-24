@@ -1,0 +1,470 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background:#ffb3d1;
+  overflow-x: hidden;
+  color: #4b2e83;
+}
+
+/* Fixed top countdown bar */
+.countdown-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ff82b4;
+  padding: 18px 0;
+  color: #ffafe1;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  z-index: 900;
+  user-select: none;
+  flex-wrap: wrap;
+}
+
+.countdown-label {
+  flex: 1 1 100%;
+  font-size: 1.2rem;
+  color: #ffe1f4;
+  margin-bottom: 4px;
+}
+
+.countdown-timer {
+  font-family: monospace;
+  font-size: 2.2rem;
+  color: white;
+  text-shadow: 0 0 6px #ff54a0cc;
+  flex: 0 1 auto;
+}
+
+.countdown-timer span {
+  padding: 0 14px;
+  user-select: text;
+}
+
+.music-toggle {
+  background: linear-gradient(135deg, #ff5ca1, #ff398a);
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff2f8ac0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.music-toggle:hover, .music-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 40px #ff397fcc;
+  transform: scale(1.05);
+}
+
+/* Container */
+.app-container {
+  min-height: 100vh;
+  margin-top: 90px; /* leave room for countdown bar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Button */
+.magic-button {
+  font-size: 5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff5ca1, #ff1a8c);
+  border: none;
+  border-radius: 30px;
+  padding: 12px 17px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease, transform 0.4s ease;
+  user-select: none;
+  background-size: 400% auto;
+}
+
+.magic-button:hover, 
+.magic-button:focus {
+  box-shadow:
+    0 0 25px #ff5ca1aa,
+    0 0 30px #fa2b7aee;
+  outline: none;
+  transform: scale(1.1);
+  animation: shimmer 3s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Birthday text */
+.main-title {
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: #ff5aa9;
+  margin-bottom: 1.5rem;
+  user-select:none;
+}
+
+.glow-text {
+  color: #ff5aa9;
+  user-select:none;
+}
+
+.compliments-list p {
+  font-size: 1.25rem;
+  max-width: 450px;
+  margin: 10px auto;
+  font-weight: 700;
+  user-select:none;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confetti */
+.confetti-wrapper {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 750;
+  user-select: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 3px;
+  opacity: 0.85;
+  animation-name: confettiFall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Balloons */
+.balloons-wrapper {
+  position: fixed;
+  bottom: -150px;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 700;
+  user-select: none;
+}
+
+.balloon {
+  position: absolute;
+  bottom: 0;
+  width: 44px;
+  height: 62px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: inset -6px -3px 8px rgba(255 255 255 / 0.7);
+  opacity: 0.9;
+  animation: balloonRise linear forwards;
+}
+
+.balloon-animate {
+  animation-duration: 8s;
+}
+
+.balloon:nth-child(odd) {
+  animation-duration: 7s;
+}
+
+.balloon:nth-child(even) {
+  animation-duration: 9s;
+}
+
+.balloon:after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  width: 3px;
+  height: 24px;
+  background: #a74dc3;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+@keyframes balloonRise {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-130vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Sparkles */
+.sparkles-wrapper {
+  position: fixed;
+  pointer-events: none;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  overflow: visible;
+  z-index: 740;
+}
+
+.sparkle {
+  position: fixed;
+  background: #ffc0d8;
+  border-radius: 50%;
+  box-shadow: 0 0 18px 5px #ff73b1cc;
+  animation-name: sparkleTwinkle;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.sparkle-animate {
+  animation-duration: 1.8s;
+}
+
+@keyframes sparkleTwinkle {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media(max-width:700px) {
+  .main-title {
+    font-size: 2.6rem;
+  }
+  .magic-button {
+    font-size: 1.6rem;
+    padding: 1rem 2.5rem;
+  }
+  .countdown-top {
+    flex-direction: column;
+    font-size: 1.3rem;
+  }
+  .countdown-label {
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+  .countdown-timer {
+    font-size: 1.8rem;
+  }
+  .music-toggle {
+    padding: 6px 14px;
+    font-size: 1rem;
+  }
+}
+/* Cake Animations */
+
+.cake-container {
+  position: fixed;
+  bottom: 30px;
+  width: 110px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  opacity: 0;
+  animation: fadeInUp 1.8s forwards;
+  z-index: 800;
+}
+
+.cake-left {
+  left: 120px;
+  animation-delay: 2s;
+}
+
+.cake-right {
+  right:20px;
+  animation-delay: 2.2s;
+}
+
+.cake-base {
+  position: relative;
+  width: 140px;
+  height: 120px;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #ffb3d1 0%, #ff5ca1 100%);
+  box-shadow:
+    inset 0 8px 12px #ff90b5,
+    0 0 13px #ff6aac,
+    0 0 13px #ff64b3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.cake-layer {
+  width: 70px;
+  height: 22px;
+  margin: 4px auto;
+  border-radius: 15px;
+  box-shadow:
+    inset 0 4px 15px rgb(255 255 255 / 0.3);
+}
+
+.candle-flame {
+  position: absolute;
+  top: -50px;
+  width: 18px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.flame-core {
+  width: 10px;
+  height: 30px;
+  background: radial-gradient(circle at 50% 60%, #ffd658 45%, transparent 70%);
+  border-radius: 80% 80% 80% 80% / 70% 70% 90% 90%;
+  box-shadow: 0 0 15px #ffd658cc;
+  animation: flickerCore 1.3s infinite alternate;
+  filter: drop-shadow(0 0 4px #bfaa27);
+}
+
+.flame-glow {
+  position: absolute;
+  top: 5px;
+  width: 20px;
+  height: 35px;
+  background: radial-gradient(circle at 50% 65%, #ffef8d 70%, transparent 95%);
+  border-radius: 80% 80% 80% 80% / 70% 70% 90% 90%;
+  filter: drop-shadow(0 0 18px #fff48888);
+  animation: flickerGlow 1.5s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes flickerCore {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.08) translateY(-3px);
+    opacity: 1;
+  }
+}
+
+@keyframes flickerGlow {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(1.15) translateY(-4px);
+    opacity: 0.6;
+  }
+}
+
+/* About Sneha panel */
+.about-sneha {
+  margin: 20px 40px 0 auto;
+  bottom: 120px;
+  left: 70%;
+  transform: translateX(-50%);
+  background: rgba(255 192 203 / 0.9);
+  border-radius: 20px;
+  box-shadow: 0 0 30px #ff5ca1aa;
+  padding: 11px 16px;
+  color: #490039;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  animation: fadeInUp 1.2s ease forwards;
+  user-select:none;
+  z-index: 850;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Additional glow & fade-in animations from previous CSS remain */
+
+/* Adjust responsive */
+@media(max-width:700px){
+  .cake-container {
+    width: 80px;
+    height: 110px;
+    animation-delay: 1.5s !important;
+  }
+  .cake-left {
+    left: 12px;
+  }
+  .cake-right {
+    right: 12px;
+  }
+  .main-title {
+    font-size: 2.6rem;
+  }
+  .about-sneha {
+    max-width: 90vw;
+    font-size: 1rem;
+  }
+}
